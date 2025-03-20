@@ -4,43 +4,52 @@ import './CardFilm.scss';
 
 const CardFilm = () => {
     const [movies, setMovies] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
         const fetchMovies = async () => {
             try {
                 const res = await axios.get('http://localhost:5000/api/movies/latest?page=1');
-                console.log("DỮ LIỆU API:", res.data.items); // Log chỉ khi có dữ liệu
-                setMovies(res.data.items);
+                if (res.data?.items?.length) {
+                    setMovies(res.data.items);
+                } else {
+                    setError("Không có phim nào được tìm thấy.");
+                }
             } catch (error) {
                 console.error("Lỗi khi lấy danh sách phim:", error);
+                setError("Không thể tải phim. Vui lòng thử lại.");
+            } finally {
+                setLoading(false);
             }
         };
 
-        fetchMovies(); // Gọi hàm async
-    }, []); // Chạy 1 lần khi component mount
+        fetchMovies();
+    }, []);
 
-    const sliderStyle = {
-        "--width": "230px",
-        "--height": "100%",
-        "--quantity": "9",
-    };
+    if (loading) {
+        return <p className="loading">Đang tải phim...</p>;
+    }
+
+    if (error) {
+        return <p className="error">{error}</p>;
+    }
 
     return (
-        <div className="slider" style={sliderStyle}>
-            <div className="list">
-
-                {movies.length === 0 ? (
-                    <p>Đang tải phim...</p> // Hiển thị loading khi chưa có dữ liệu
-                ) : (
-                    movies.map((movie, index) => (
-                        console.log("phim", movie),
-                        <div key={movie._id} className="item" style={{ "--position": index + 1 }}>
-                            <div className="card" style={{ backgroundImage: `url(${movie.poster_url})` }}>
-                            </div>
-                        </div>
-                    ))
-                )}
-            </div>
+        <div className="movie-container">
+            {movies.map((movie) => (    
+                <div key={movie._id} className="card">
+                    <img src={movie.thumb_url} alt={movie.name} className="thumb" />
+                    <div className="info">
+                        <h2>{movie.name}</h2>
+                        <p className="origin">{movie.origin_name}</p>
+                        <p className="year">Năm: {movie.year}</p>
+                        <p className="updated">
+                            Cập nhật: {new Intl.DateTimeFormat('vi-VN').format(new Date(movie.modified.time))}
+                        </p>
+                    </div>
+                </div>
+            ))}
         </div>
     );
 };
