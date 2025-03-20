@@ -1,0 +1,31 @@
+
+  .parent {
+    padding: 12px 0;
+    .container{
+      .header-content{
+        color: white !important;
+        display: flex;
+        align-items: center;
+        padding: 12px 0px;
+        text-decoration: none;
+        width: fit-content;
+        &:hover{
+          color: red !important;
+        }
+      }
+    }
+  }
+  
+  .slider-userhome {
+    margin: 0px 20px;
+    overflow: hidden;
+    padding:  0;
+    width: fit-content !important;
+    img {
+      width: 100%;
+    //   height: 400px; // Điều chỉnh chiều cao theo ý muốn
+    //   object-fit: cover; // Cắt ảnh để giữ tỷ lệ và tránh méo
+    }
+  }
+  
+      

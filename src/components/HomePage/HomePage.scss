@@ -1,0 +1,333 @@
+.background-container {
+    position: relative;
+    background-image: url('../../assets/background-homepage.jpg') !important;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+
+    // Tạo lớp overlay làm mờ ảnh
+    &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.8);
+        z-index: 1;
+    }
+
+    .navbar {
+        background: transparent !important;
+        position: relative;
+        z-index: 3;
+        .navbar-brand {
+          color: #e50914 !important;
+          font-family: 'Bebas Neue', sans-serif;
+          font-weight: bold;
+          font-size: 40px !important;
+          text-shadow: 
+              0px 2px 4px rgba(0, 0, 0, 0.4), 
+              0px 4px 8px rgba(0, 0, 0, 0.6),
+              0px 6px 8px rgba(0, 0, 0, 0.4);
+          position: relative;
+          z-index: 2;
+        }
+        .navbar-collapse {
+          .navbar-nav{
+            display: flex;
+            gap: 20px;
+            color: white !important;
+            align-items: center;
+
+            .dropdown {
+                background-color: transparent !important;
+                display: flex;
+                height: 40px;
+                .dropdown-toggle {
+                  width: 120px; 
+                  height: 100%; // Thêm chiều cao để căn giữa dọc
+                  background: transparent !important; /* Màu nền của nút dropdown */
+                  border-radius: 5px;
+                  border: white solid 2px;
+                  width: 120px;
+                  padding: 0px !important;
+              }
+              .dropdown-menu {
+                background-color: transparent !important; /* Nền dropdown trong suốt */
+                border: 2px solid white !important; /* Viền trắng 2px */
+                backdrop-filter: blur(10px); /* Làm mờ nền phía sau dropdown */
+                box-shadow: 0px 4px 6px rgba(255, 255, 255, 0.2); /* Đổ bóng nhẹ */
+        
+                .dropdown-item {
+                    color: white !important;
+                    transition: background 0.3s ease;
+        
+                    &:hover {
+                        background: rgba(255, 255, 255, 0.2); /* Hiệu ứng hover */
+                    }
+                }
+            }
+            }                               
+            .nav-link{
+              color: white;
+              border-radius: 5px;
+              border: none;
+              width: 120px; 
+              height: 40px; // Thêm chiều cao để căn giữa dọc
+              background-color: red;
+              font-weight: 700;
+              display: flex;
+              justify-content: center; // Căn giữa ngang
+              align-items: center; // Căn giữa dọc
+              text-align: center; // Đảm bảo văn bản giữa nếu có nhiều dòng
+              &:hover {
+                  background-color: rgb(198, 5, 5);
+              }
+            }
+          }
+        }
+    }
+
+    .middle-content{
+      color: white;
+      z-index: 2;
+      display: flex; // Bật flexbox
+      flex-direction: column; // Chuyển từ hàng ngang (row) sang hàng dọc (column)
+      align-items: center; // Căn giữa theo chiều ngang
+      justify-content: center; // Căn giữa theo chiều dọc
+      height: 80vh;
+      .middle-title-top{
+       font-size: 3.5rem;
+       font-weight: 900;
+      }
+      .middle-title-mid{
+      font-size: 1.25rem;
+      font-weight: 500;
+      }
+      .middle-title-bot{
+        font-size: 1rem;
+        font-weight: 400;
+      }
+      .search-box{
+        display: flex;
+        align-items: center; // Căn giữa theo chiều ngang
+        justify-content: center; // Căn giữa theo chiều dọc
+        gap: 20px;
+        .search-input{
+          width: 50vh;
+          background-color: #1a1a1a;
+          border: red solid 1px;
+          padding: 10px;
+          // border-radius: 10px;
+          outline: none;
+          color: white;
+          &:focus{
+            animation: rotateShadow 2s infinite linear;
+            border: none;
+          }
+        }
+        .btn-start{
+          width: 150px;
+          height: 45.6px;
+          display: flex;
+          align-items: center;
+          justify-content: flex-start;
+          gap: 12px;
+          cursor: pointer;
+          border:  none;
+          background-color: red;
+          .text-start{
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-left: 8px;
+          }
+          .arrow-start path{
+            fill: rgb(19, 19, 19);
+            font-weight: 500;
+          }
+          &:hover{
+            background-color: rgb(198, 5, 5);
+            .arrow-start{
+              animation: slide-in-left 0.6s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+            }
+          }
+          &:active{
+            transform: scale(0.97);
+          }
+        }
+      }
+    }
+}
+@keyframes rotateShadow {
+  0% {
+    box-shadow: -2px -2px 8px 1px #fc1500, 2px 2px 8px 1px #fbcd02;
+  }
+  25% {
+    box-shadow: -2px 2px 8px 1px #8f4102, 2px -2px 8px 1px #f99602;
+  }
+  50% {
+    box-shadow: 2px 2px 8px 1px #d45c00, -2px -2px 8px 1px #c88c01;
+  }
+  75% {
+    box-shadow: 2px -2px 8px 1px #f71900, -2px 2px 8px 1px #d48301;
+  }
+  100% {
+    box-shadow: -2px -2px 8px 1px #dd4702, 2px 2px 8px 1px #ff0000;
+  }
+}
+
+@keyframes slide-in-left {
+  0% {
+    transform: translateX(-8px);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateX(0px);
+    opacity: 1;
+  }
+}
+
+
+//TRENDING MOVIE
+.treding-movie-container{
+  background-color: black;
+  color: white;
+  padding-bottom: 28px;
+  .container{
+    .title{
+      padding-top: 40px;
+      padding-bottom: 24px;
+      padding-left: 24px;
+      font-size: 1.5rem;
+      font-weight: 500;
+    }
+    .card-films{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+}
+
+// REASON IVITE
+.reason-invite{
+  background-color: black;
+  color: white;
+  padding-bottom: 28px;
+  .container{
+    .title{
+      padding-top: 40px;
+      padding-bottom: 24px;
+      padding-left: 24px;
+      font-size: 1.5rem;
+      font-weight: 500;
+    }
+    .card-films{
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+}
+
+//FAQ
+.faq-content{
+  background-color: black;
+  color: white;
+  padding-bottom: 64px;
+  .container{
+    .title{
+      padding-top: 40px;
+      padding-bottom: 24px;
+      padding-left: 24px;
+      font-size: 1.5rem;
+      font-weight: 500;
+    }
+  }
+}
+
+//INPUT EMAIL
+.input-email{
+  
+  background-color: black;
+  .title{
+    display: flex;
+    justify-content: center;
+    font-size: 1rem;
+    font-weight: 400;
+    padding-bottom: 16px;
+    color: white;
+  }
+  .search-box{
+    display: flex;
+    align-items: center; // Căn giữa theo chiều ngang
+    justify-content: center; // Căn giữa theo chiều dọc
+    gap: 20px;
+    .search-input{
+      width: 70vh;
+      background-color: #1a1a1a;
+      border: red solid 1px;
+      padding: 10px;
+      // border-radius: 10px;
+      outline: none;
+      color: white;
+      &:focus{
+        animation: rotateShadow 2s infinite linear;
+        border: none;
+      }
+    }
+    .btn-start{
+      width: 140px;
+      height: 45.6px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 12px;
+      cursor: pointer;
+      border:  none;
+      background-color: red;
+      .text-start{
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin-left: 8px;
+      }
+      .arrow-start path{
+        fill: rgb(19, 19, 19);
+        font-weight: 500;
+      }
+      &:hover{
+        background-color: rgb(198, 5, 5);
+        .arrow-start{
+          animation: slide-in-left 0.6s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+        }
+      }
+      &:active{
+        transform: scale(0.97);
+      }
+    }
+  }
+}
+
+//FOOTER HOMEPAGE
+.footer-homepage{
+  background-color: black;
+  color: rgba(255,255,255,0.7);
+}

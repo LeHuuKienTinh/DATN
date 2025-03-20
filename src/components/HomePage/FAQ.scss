@@ -1,0 +1,26 @@
+
+.accordion-item{
+    border: none !important ;
+    .accordion-header{
+        .accordion-button{
+            background-color: rgb(45,45,45) !important;
+            color: white !important;
+            font-weight: 500;
+            font-size: inherit;
+            border: none !important;
+    
+            &:hover{
+             background-color: rgb(110, 109, 109);
+            } 
+            &:active{
+                border: none !important;
+            }
+        }
+        .accordion-collapse{
+            .accordion-body{
+            background-color: rgb(45,45,45) !important;
+
+            }
+        }
+    }
+}
